@@ -7,22 +7,16 @@ package suapcron.gui;
 
 import com.toedter.calendar.JCalendar;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.JFormattedTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import suapcron.domain.Expediente;
@@ -45,6 +39,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         escolhedorDeData.setLocationRelativeTo(this);
 
         ehExpedientePadrao = false;
+        
+        icone = new ImageIcon(getClass().getResource("/suapcron/img/icon64.png"));
 
         DefaultTableModel dtm = (DefaultTableModel) tabelaPasso2.getModel();
         dtm.setRowCount(0);
@@ -104,7 +100,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         escolhedorDeData.setTitle("Escolher Data");
         escolhedorDeData.setBounds(new java.awt.Rectangle(0, 0, 270, 285));
         escolhedorDeData.setModal(true);
-        escolhedorDeData.setPreferredSize(new java.awt.Dimension(270, 285));
 
         calendario.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -147,7 +142,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Suapcron");
-        setPreferredSize(new java.awt.Dimension(720, 530));
         setResizable(false);
         setSize(new java.awt.Dimension(720, 530));
 
@@ -167,9 +161,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap()
                 .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         passos.setEnabled(false);
@@ -218,7 +212,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(listaExpedientePadrao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
                 .addGroup(primeiroPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -255,7 +249,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         labelExpedientePadrao.setFont(new java.awt.Font("Orkney", 0, 18)); // NOI18N
         labelExpedientePadrao.setText("Expediente:");
 
-        tabelaPasso2.setFont(new java.awt.Font("Orkney", 0, 18)); // NOI18N
+        tabelaPasso2.setFont(new java.awt.Font("Orkney", 0, 14)); // NOI18N
         tabelaPasso2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -384,27 +378,28 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                     .addGroup(segundoPassoLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoDiaAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                        .addComponent(campoDiaAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
                     .addComponent(labelTotalDeHoras))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(segundoPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, segundoPassoLayout.createSequentialGroup()
+                .addGroup(segundoPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(segundoPassoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botaoSelecaoDataDiaAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoHoraAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(campoHoraAdicionar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, segundoPassoLayout.createSequentialGroup()
+                        .addComponent(botaoAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(segundoPassoLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botaoRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoOK, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(botaoOK, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         segundoPassoLayout.setVerticalGroup(
             segundoPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -428,14 +423,15 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                     .addComponent(campoHoraAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoAdicionar)
                     .addComponent(botaoSelecaoDataDiaAdicionar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(segundoPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTotalDeHoras)
-                    .addComponent(botaoVoltar)
-                    .addComponent(botaoLimpar)
-                    .addComponent(botaoOK)
-                    .addComponent(botaoRemover))
-                .addContainerGap())
+                    .addGroup(segundoPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(botaoVoltar)
+                        .addComponent(botaoLimpar)
+                        .addComponent(botaoRemover)
+                        .addComponent(botaoOK)))
+                .addGap(0, 0, 0))
         );
 
         passos.addTab("Segundo passo", segundoPasso);
@@ -522,7 +518,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .addComponent(campoTextoDevido, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoCampoDevido)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(terceiroPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoFinalizar)
                     .addComponent(botaoRecomecar))
@@ -756,6 +752,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private boolean ehAdicaoDeExpediente;
     private boolean comboBreaker;
     private Thread controlePasso2;
+    private  ImageIcon icone;
 
     private void limparCamposPasso1() {
         listaExpedientePadrao.setSelectedIndex(0);
@@ -809,13 +806,13 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private void copiarAreaTextoDevidoParaAreaDeTransferencia() {
         areaTextoDevido.selectAll();
         copiarParaAreaDeTransferencia(areaTextoDevido.getText());
-        JOptionPane.showMessageDialog(this, "Texto copiado com sucesso.", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Texto copiado com sucesso.", "Mensagem", JOptionPane.INFORMATION_MESSAGE, icone);
     }
 
     private void copiarCampoTextoDevidoParaAreaDeTransferencia() {
         campoTextoDevido.selectAll();
         copiarParaAreaDeTransferencia(campoTextoDevido.getText());
-        JOptionPane.showMessageDialog(this, "Texto copiado com sucesso.", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Texto copiado com sucesso.", "Mensagem", JOptionPane.INFORMATION_MESSAGE, icone);
     }
 
     private void copiarParaAreaDeTransferencia(String texto) {
@@ -893,7 +890,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 }
             } catch (ParseException ex) {
                 JOptionPane.showMessageDialog(this, "Erro!\n"
-                        + ex.getMessage());
+                        + ex.getMessage(), "Erro", JOptionPane.INFORMATION_MESSAGE, icone);
             }
 
         }
@@ -952,8 +949,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                                 habilitarCamposPasso2();
                             }
                         } catch (ParseException ex) {
-                            //JOptionPane.showMessageDialog(JanelaPrincipal.this, "Erro!\n"
-                              //      + ex.getMessage());
                             System.err.println("Erro!\n"
                                     + ex.getMessage());
                         }
