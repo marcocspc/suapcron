@@ -18,8 +18,8 @@
    inkscape:version="0.91 r13725"
    sodipodi:docname="logoV2.svg"
    inkscape:export-filename="/Users/marcocspc/NetBeansProjects/suapcron/img/path4188.png"
-   inkscape:export-xdpi="15"
-   inkscape:export-ydpi="15">
+   inkscape:export-xdpi="19.95495"
+   inkscape:export-ydpi="19.95495">
   <defs
      id="defs4">
     <linearGradient
@@ -47,6 +47,48 @@
        x2="687.21094"
        y2="327.30902"
        gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4169"
+       id="linearGradient4202"
+       gradientUnits="userSpaceOnUse"
+       x1="448.112"
+       y1="327.71658"
+       x2="687.21094"
+       y2="327.30902"
+       gradientTransform="translate(-4.2426402,858.3968)" />
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter4268">
+      <feFlood
+         flood-opacity="0.498039"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood4270" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite4272" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="3"
+         result="blur"
+         id="feGaussianBlur4274" />
+      <feOffset
+         dx="6"
+         dy="6"
+         result="offset"
+         id="feOffset4276" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite4278" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -56,8 +98,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.70710678"
-     inkscape:cx="585.01819"
-     inkscape:cy="291.50323"
+     inkscape:cx="602.76422"
+     inkscape:cy="-67.319282"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -81,7 +123,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -93,10 +135,10 @@
     <path
        style="font-style:normal;font-weight:normal;font-size:405.94519043px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient4175);fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 589.85742 107.72461 L 580.61523 188.44336 C 584.4122 188.23026 588.27817 188.11719 592.22266 188.11719 C 594.25161 188.11719 596.26445 188.15236 598.26562 188.21484 L 589.85742 107.72461 z M 598.26562 188.21484 L 601.71289 221.20898 C 616.26405 221.95292 630.08183 224.99124 643.16406 230.33789 C 658.49272 236.54864 672.89635 245.93072 686.375 258.48438 L 686.375 216.26367 C 672.63206 206.88148 657.89696 199.87893 642.17188 195.25391 C 628.36562 191.04183 613.72921 188.69765 598.26562 188.21484 z M 601.71289 221.20898 C 599.36122 221.08875 596.99161 221.02148 594.60156 221.02148 C 588.38755 221.02148 582.44267 221.37422 576.76367 222.07422 L 560.54492 363.72656 L 560.55078 363.73242 L 589.47461 327.43164 L 616.55664 364.08203 L 616.63281 364.02539 L 601.71289 221.20898 z M 616.63281 364.02539 L 616.63867 364.08203 L 616.65234 364.00977 L 616.63281 364.02539 z M 616.63867 364.08203 L 616.62305 364.16992 L 616.65234 364.21094 L 616.63867 364.08203 z M 616.62305 364.16992 L 616.55664 364.08203 L 587.7207 386.16211 L 560.55078 363.73242 L 560.54492 363.73828 L 577.24414 461.25781 C 582.77848 461.91493 588.56174 462.25 594.60156 462.25 C 595.81412 462.25 597.01997 462.23016 598.22266 462.19922 L 616.62305 364.16992 z M 598.22266 462.19922 L 592.03906 495.15039 C 592.10063 495.15044 592.16105 495.15234 592.22266 495.15234 C 609.66561 495.15234 626.18244 492.77475 641.77539 488.01758 C 657.50048 483.26041 672.36778 476.12372 686.375 466.60938 L 686.375 424.78711 C 672.89635 437.34075 658.49272 446.72284 643.16406 452.93359 C 629.0402 458.70596 614.05873 461.79178 598.22266 462.19922 z M 592.03906 495.15039 C 588.98536 495.14782 585.97884 495.07709 583.01367 494.94727 L 587.33789 520.19531 L 592.03906 495.15039 z M 583.01367 494.94727 L 577.24414 461.25781 C 551.78088 458.23442 531.66327 448.26202 516.90039 431.32812 C 498.92886 410.58158 489.94336 380.71673 489.94336 341.73438 C 489.94336 302.61986 498.92886 272.75504 516.90039 252.14062 C 531.57073 235.20502 551.5265 225.18496 576.76367 222.07422 L 580.61523 188.44336 C 541.29094 190.65043 509.87406 204.28005 486.375 229.3457 C 460.60699 256.69943 447.72266 294.16266 447.72266 341.73438 C 447.72266 389.17392 460.60699 426.63717 486.375 454.12305 C 510.34999 479.57342 542.56602 493.17635 583.01367 494.94727 z M 560.54492 363.73828 L 560.54492 363.73242 L 560.54297 363.74219 L 560.54492 363.73828 z M 560.54492 363.73242 L 560.54492 363.72656 L 560.54297 363.72461 L 560.54492 363.73242 z "
-       transform="translate(0,308.26772)"
        id="text3340"
        inkscape:export-xdpi="15.015988"
-       inkscape:export-ydpi="15.015988" />
+       inkscape:export-ydpi="15.015988"
+       transform="translate(0,308.26772)" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:155.5738678px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#b0b0b0;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -111,5 +153,12 @@
          x="88.686028"
          y="706.03479"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:155.57499695px;line-height:125%;font-family:Orkney;-inkscape-font-specification:'Orkney, Bold';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#b0b0b0;fill-opacity:1">SUAP   RON</tspan></text>
+    <path
+       inkscape:export-ydpi="2.8283827"
+       inkscape:export-xdpi="2.8283827"
+       id="path4200"
+       d="m 585.61481,966.12141 -9.2422,80.71879 c 3.7969,-0.2131 7.6629,-0.3262 11.6074,-0.3262 2.029,0 4.0418,0.035 6.043,0.098 l -8.4082,-80.49024 z m 8.4082,80.49019 3.4472,32.9942 c 14.5512,0.7439 28.369,3.7822 41.4512,9.1289 15.3287,6.2107 29.7323,15.5928 43.2109,28.1465 l 0,-42.2207 c -13.7429,-9.3822 -28.478,-16.3848 -44.2031,-21.0098 -13.8062,-4.2121 -28.4426,-6.5563 -43.9062,-7.0391 z m 3.4472,32.9942 c -2.3516,-0.1203 -4.7212,-0.1875 -7.1113,-0.1875 -6.214,0 -12.1589,0.3527 -17.8379,1.0527 l -16.2187,141.6524 0.01,0.01 28.9239,-36.3008 27.082,36.6504 0.076,-0.057 -14.92,-142.8164 z m 14.92,142.8164 0.01,0.057 0.014,-0.072 -0.019,0.016 z m 0.01,0.057 -0.016,0.088 0.029,0.041 -0.014,-0.1289 z m -0.016,0.088 -0.066,-0.088 -28.836,22.0801 -27.1699,-22.4297 -0.01,0.01 16.6992,97.5195 c 5.5343,0.6571 11.3176,0.9922 17.3574,0.9922 1.2126,0 2.4184,-0.02 3.6211,-0.051 l 18.4004,-98.0293 z m -18.4004,98.0293 -6.1836,32.9512 c 0.062,0 0.122,0 0.1836,0 17.443,0 33.9598,-2.3776 49.5527,-7.1348 15.7251,-4.7572 30.5924,-11.8939 44.5996,-21.4082 l 0,-41.8223 c -13.4786,12.5537 -27.8822,21.9358 -43.2109,28.1465 -14.1239,5.7724 -29.1053,8.8582 -44.9414,9.2656 z m -6.1836,32.9512 c -3.0537,0 -6.0602,-0.073 -9.0254,-0.2032 l 4.3242,25.2481 4.7012,-25.0449 z m -9.0254,-0.2032 -5.7695,-33.6894 c -25.4633,-3.0234 -45.5809,-12.9958 -60.3438,-29.9297 -17.9715,-20.7465 -26.957,-50.6114 -26.957,-89.5937 0,-39.1146 8.9855,-68.9794 26.957,-89.5938 14.6704,-16.9356 34.6261,-26.9557 59.8633,-30.0664 l 3.8516,-33.6309 c -39.3243,2.2071 -70.7412,15.8367 -94.2403,40.9024 -25.768,27.3537 -38.6523,64.8169 -38.6523,112.3887 0,47.4395 12.8843,84.9027 38.6523,112.3886 23.975,25.4504 56.1911,39.0533 96.6387,40.8242 z m -22.4687,-131.2089 0,-0.01 0,0.01 0,0 z m 0,-0.01 0,-0.01 0,0 0,0.01 z"
+       style="font-style:normal;font-weight:normal;font-size:405.94519043px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient4202);fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter4268)"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>
