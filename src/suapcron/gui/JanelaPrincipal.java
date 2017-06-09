@@ -349,6 +349,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        botaoRemover.setFont(new java.awt.Font("Orkney", 0, 14)); // NOI18N
         botaoRemover.setText("Remover");
         botaoRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -445,6 +446,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         areaTextoDevido.setRows(5);
         jScrollPane2.setViewportView(areaTextoDevido);
 
+        botaoCopiarTextoDevido.setFont(new java.awt.Font("Orkney", 0, 14)); // NOI18N
         botaoCopiarTextoDevido.setText("Copiar");
         botaoCopiarTextoDevido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -458,6 +460,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         campoTextoDevido.setEditable(false);
         campoTextoDevido.setFont(new java.awt.Font("Orkney", 0, 18)); // NOI18N
 
+        botaoCampoDevido.setFont(new java.awt.Font("Orkney", 0, 14)); // NOI18N
         botaoCampoDevido.setText("Copiar");
         botaoCampoDevido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -465,6 +468,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        botaoFinalizar.setFont(new java.awt.Font("Orkney", 0, 14)); // NOI18N
         botaoFinalizar.setText("Finalizar");
         botaoFinalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -472,6 +476,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        botaoRecomecar.setFont(new java.awt.Font("Orkney", 0, 14)); // NOI18N
         botaoRecomecar.setText("Recomeçar");
         botaoRecomecar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -518,7 +523,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .addComponent(campoTextoDevido, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoCampoDevido)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(terceiroPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoFinalizar)
                     .addComponent(botaoRecomecar))
