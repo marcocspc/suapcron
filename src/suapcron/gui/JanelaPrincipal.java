@@ -39,7 +39,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         escolhedorDeData.setLocationRelativeTo(this);
 
         ehExpedientePadrao = false;
-        
+
         icone = new ImageIcon(getClass().getResource("/suapcron/img/icon64.png"));
 
         DefaultTableModel dtm = (DefaultTableModel) tabelaPasso2.getModel();
@@ -67,6 +67,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         listaExpedientePadrao = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        checkBoxDiaCustom = new javax.swing.JCheckBox();
+        jLabel8 = new javax.swing.JLabel();
+        campoExpedienteCustomizado = new javax.swing.JFormattedTextField();
         segundoPasso = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         campoDiaDevido = new javax.swing.JFormattedTextField();
@@ -188,22 +191,47 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        checkBoxDiaCustom.setFont(new java.awt.Font("Orkney", 0, 14)); // NOI18N
+        checkBoxDiaCustom.setText("Não estou devendo um dia inteiro.");
+        checkBoxDiaCustom.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                checkBoxDiaCustomStateChanged(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Orkney", 0, 18)); // NOI18N
+        jLabel8.setText("Eu já paguei esta quantidade de horas:");
+
+        try {
+            campoExpedienteCustomizado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        campoExpedienteCustomizado.setEnabled(false);
+        campoExpedienteCustomizado.setFont(new java.awt.Font("Orkney", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout primeiroPassoLayout = new javax.swing.GroupLayout(primeiroPasso);
         primeiroPasso.setLayout(primeiroPassoLayout);
         primeiroPassoLayout.setHorizontalGroup(
             primeiroPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(primeiroPassoLayout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addGroup(primeiroPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(listaExpedientePadrao, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(92, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, primeiroPassoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addContainerGap())
+            .addGroup(primeiroPassoLayout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addGroup(primeiroPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(primeiroPassoLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoExpedienteCustomizado))
+                    .addComponent(checkBoxDiaCustom)
+                    .addGroup(primeiroPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(listaExpedientePadrao, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         primeiroPassoLayout.setVerticalGroup(
             primeiroPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +240,13 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(listaExpedientePadrao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkBoxDiaCustom)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(primeiroPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(campoExpedienteCustomizado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addGroup(primeiroPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -425,13 +459,13 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                     .addComponent(botaoAdicionar)
                     .addComponent(botaoSelecaoDataDiaAdicionar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(segundoPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelTotalDeHoras)
+                .addGroup(segundoPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(segundoPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(botaoVoltar)
                         .addComponent(botaoLimpar)
                         .addComponent(botaoRemover)
-                        .addComponent(botaoOK)))
+                        .addComponent(botaoOK))
+                    .addComponent(labelTotalDeHoras))
                 .addGap(0, 0, 0))
         );
 
@@ -555,6 +589,19 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (checkBoxDiaCustom.isSelected()) {
+            int hora = Integer.parseInt(campoExpedienteCustomizado.getText().substring(0, 2));
+            int minuto = Integer.parseInt(campoExpedienteCustomizado.getText().substring(3, 5));
+            int segundo = Integer.parseInt(campoExpedienteCustomizado.getText().substring(6));
+
+            expedienteTotal = new Expediente(new Date(), new Hora(hora, minuto, segundo));
+        } else {
+            expedienteTotal = new Expediente(new Date(), new Hora(0, 0, 0));
+            
+        }
+        
+        expedienteDevido = new Expediente(new Date(), new Hora(0, 0, 0));
+        
         DefaultComboBoxModel dcbm = (DefaultComboBoxModel) listaExpedientePadrao.getModel();
         String escolhido = dcbm.getSelectedItem().toString();
         if (escolhido.contains("8")) {
@@ -563,9 +610,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             expedientePadrao = new Expediente(new Date(), new Hora(6, 0, 0));
         }
 
-        expedienteTotal = new Expediente(new Date(), new Hora(0, 0, 0));
         expedientesUsados = new ArrayList<Expediente>();
-        expedienteDevido = new Expediente(new Date(), new Hora(0, 0, 0));
 
         comboBreaker = false;
         controlePasso2 = new Thread(new threadDeVerificacaoPasso2());
@@ -670,6 +715,15 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         campoHoraAdicionar.selectAll();
     }//GEN-LAST:event_campoHoraAdicionarFocusGained
 
+    private void checkBoxDiaCustomStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_checkBoxDiaCustomStateChanged
+        if (checkBoxDiaCustom.isSelected()) {
+            campoExpedienteCustomizado.setEnabled(true);
+        } else {
+            campoExpedienteCustomizado.setEnabled(false);
+            campoExpedienteCustomizado.setText("");
+        }
+    }//GEN-LAST:event_checkBoxDiaCustomStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -720,8 +774,10 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private com.toedter.calendar.JCalendar calendario;
     private javax.swing.JFormattedTextField campoDiaAdicionar;
     private javax.swing.JFormattedTextField campoDiaDevido;
+    private javax.swing.JFormattedTextField campoExpedienteCustomizado;
     private javax.swing.JFormattedTextField campoHoraAdicionar;
     private javax.swing.JTextField campoTextoDevido;
+    private javax.swing.JCheckBox checkBoxDiaCustom;
     private javax.swing.JDialog escolhedorDeData;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -732,6 +788,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -757,10 +814,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private boolean ehAdicaoDeExpediente;
     private boolean comboBreaker;
     private Thread controlePasso2;
-    private  ImageIcon icone;
+    private ImageIcon icone;
 
     private void limparCamposPasso1() {
         listaExpedientePadrao.setSelectedIndex(0);
+        checkBoxDiaCustom.setSelected(false);
     }
 
     private void limparCamposPasso2() {
@@ -830,7 +888,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         String res = "Dia pago com:\n";
-        
+
         Hora total = new Hora(0, 0, 0);
 
         for (int x = 0; x < expedientesUsados.size(); x++) {
@@ -846,8 +904,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
             res += linha;
         }
-        
-        res+= "Total: " + total + " extras.";
+
+        res += "Total: " + total + " extras.";
 
         return res;
     }
@@ -861,8 +919,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private boolean camposPasso2EstaoHabilitados() {
         return tabelaPasso2.isEnabled() && campoDiaAdicionar.isEnabled() && campoHoraAdicionar.isEnabled();
     }
-    
-    private void adicionarDiaNaTabela () {
+
+    private void adicionarDiaNaTabela() {
         if (!campoHoraAdicionar.getText().equals("  :  :  ") && !campoDiaAdicionar.getText().equals("  /  /    ")) {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             try {
