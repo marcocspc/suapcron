@@ -5,9 +5,11 @@
  */
 package suapcron;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UIManager;
-import suapcron.domain.Hora;
 import suapcron.gui.JanelaPrincipal;
+import suapcron.suapdealer.SuapConnection;
 
 /**
  *
@@ -27,7 +29,6 @@ public class Suapcron {
         
         JanelaPrincipal jp = new JanelaPrincipal();
         jp.setVisible(true);
-        
     }
     
 }
