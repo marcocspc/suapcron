@@ -665,6 +665,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
 
         btnInserirSUAPDiasUtilizados.setText("Inserir no SUAP");
+        btnInserirSUAPDiasUtilizados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInserirSUAPDiasUtilizadosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout terceiroPassoLayout = new javax.swing.GroupLayout(terceiroPasso);
         terceiroPasso.setLayout(terceiroPassoLayout);
@@ -883,9 +888,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         passos.setEnabled(false);
         dialogCarregandoInserirObservacoes.setVisible(true);
         if (suap.getServidor() == null) {
-            
+
             dialogLoginSuap.setVisible(true);
-            
+
             if (!naoContinuarOperacoesNoSuap) {
                 Servidor s = new Servidor(campoMatricula.getText(), String.valueOf(campoSenha.getPassword()));
                 suap.setServidor(s);
@@ -901,10 +906,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane, ex.getMessage());
                 }
             }
-            
+
         }
 
-        
         if (suap.getServidor() != null && !naoContinuarOperacoesNoSuap) {
             naoContinuarOperacoesNoSuap = false;
 
@@ -938,6 +942,42 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             dialogCarregandoInserirObservacoes.requestFocus();
         }
     }//GEN-LAST:event_formFocusGained
+
+    private void btnInserirSUAPDiasUtilizadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirSUAPDiasUtilizadosActionPerformed
+        passos.setEnabled(false);
+        dialogCarregandoInserirObservacoes.setVisible(true);
+        if (suap.getServidor() == null) {
+
+            dialogLoginSuap.setVisible(true);
+
+            if (!naoContinuarOperacoesNoSuap) {
+                Servidor s = new Servidor(campoMatricula.getText(), String.valueOf(campoSenha.getPassword()));
+                suap.setServidor(s);
+
+                try {
+                    if (!suap.verificarCredenciais()) {
+                        dialogCarregandoInserirObservacoes.setVisible(false);
+                        JOptionPane.showMessageDialog(rootPane, "Credenciais inválidas.", "Atenção", JOptionPane.DEFAULT_OPTION, icone);
+                        naoContinuarOperacoesNoSuap = true;
+                        suap.setServidor(null);
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+                }
+            }
+
+        }
+
+        if (suap.getServidor() != null && !naoContinuarOperacoesNoSuap) {
+            naoContinuarOperacoesNoSuap = false;
+
+            threadDeInsercaoDeObservacaoDosDiasUtilizados thread = new threadDeInsercaoDeObservacaoDosDiasUtilizados();
+            thread.run();
+        }
+        
+        dialogCarregandoInserirObservacoes.setVisible(false);
+        passos.setEnabled(true);
+    }//GEN-LAST:event_btnInserirSUAPDiasUtilizadosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1078,7 +1118,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         areaTextoDevido.setText("");
         campoTextoDevido.setText("");
     }
-
 
     private void limparLoginSuap() {
         campoMatricula.setText("");
@@ -1287,6 +1326,33 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(JanelaPrincipal.this, ex.getMessage());
             }
+
+        }
+    }
+
+    private class threadDeInsercaoDeObservacaoDosDiasUtilizados implements Runnable {
+
+        @Override
+        public void run() {
+            //Quando chegar aqui, a janela com a barra de carregamento já estará sendo exibida
+            for (Expediente e : expedientesUsados) {
+
+                e.setObservacao(campoTextoDevido.getText());
+
+                try {
+                    System.out.println("inserindo observacao: " + (expedientesUsados.indexOf(e) + 1) + "/" + expedientesUsados.size());
+                    suap.inserirObservacao(e);
+                    System.out.println("observacao inserida " + (expedientesUsados.indexOf(e) + 1) + "/" + expedientesUsados.size());
+
+                    
+
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(JanelaPrincipal.this, ex.getMessage());
+                   break;
+                }
+            }
+            
+            JOptionPane.showMessageDialog(rootPane, "Operação concluída.", "Atenção", JOptionPane.DEFAULT_OPTION, icone);
 
         }
     }

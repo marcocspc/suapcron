@@ -938,6 +938,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Inserir no SUAP"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInserirSUAPDiasUtilizadosActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
