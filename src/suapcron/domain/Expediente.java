@@ -14,11 +14,20 @@ import java.util.Date;
 public class Expediente {
     private Date dia;
     private Hora horasTrabalhadas;
+    private String observacao;
 
     public Expediente(Date dia, Hora horasTrabalhadas) {
         this.dia = dia;
         this.horasTrabalhadas = horasTrabalhadas;
     }
+
+    public Expediente(Date dia, Hora horasTrabalhadas, String observacao) {
+        this.dia = dia;
+        this.horasTrabalhadas = horasTrabalhadas;
+        this.observacao = observacao;
+    }
+    
+    
 
     public Expediente() {
     }
@@ -38,6 +47,15 @@ public class Expediente {
     public void setHorasTrabalhadas(Hora horasTrabalhadas) {
         this.horasTrabalhadas = horasTrabalhadas;
     }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+    
     
     
 }

@@ -18,9 +18,12 @@ import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JProgressBar;
 import javax.swing.table.DefaultTableModel;
 import suapcron.domain.Expediente;
 import suapcron.domain.Hora;
+import suapcron.domain.Servidor;
+import suapcron.domain.Suap;
 
 /**
  *
@@ -36,11 +39,17 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         this.pack();
         this.setLocationRelativeTo(null);
 
-        escolhedorDeData.setLocationRelativeTo(this);
-
+        dialogEscolhedorDeData.setLocationRelativeTo(this);
+        dialogLoginSuap.setLocationRelativeTo(this);
+        dialogCarregandoInserirObservacoes.setLocationRelativeTo(this);
         ehExpedientePadrao = false;
-
         icone = new ImageIcon(getClass().getResource("/suapcron/img/icon64.png"));
+        suap = new Suap();
+        naoContinuarOperacoesNoSuap = true;
+
+        dialogCarregandoInserirObservacoes.pack();
+        dialogEscolhedorDeData.pack();
+        dialogLoginSuap.pack();
 
         DefaultTableModel dtm = (DefaultTableModel) tabelaPasso2.getModel();
         dtm.setRowCount(0);
@@ -55,10 +64,21 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        escolhedorDeData = new javax.swing.JDialog();
+        dialogEscolhedorDeData = new javax.swing.JDialog();
         calendario = new com.toedter.calendar.JCalendar();
         okJDialog = new javax.swing.JButton();
         labelDataJDialog = new javax.swing.JLabel();
+        dialogLoginSuap = new javax.swing.JDialog();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        campoMatricula = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        campoSenha = new javax.swing.JPasswordField();
+        btnOKLogin = new javax.swing.JButton();
+        btnCancelLogin = new javax.swing.JButton();
+        dialogCarregandoInserirObservacoes = new javax.swing.JDialog();
+        jLabel12 = new javax.swing.JLabel();
+        barraProgressoObs = new javax.swing.JProgressBar();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         passos = new javax.swing.JTabbedPane();
@@ -99,10 +119,12 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         botaoCampoDevido = new javax.swing.JButton();
         botaoFinalizar = new javax.swing.JButton();
         botaoRecomecar = new javax.swing.JButton();
+        btnInserirSUAPdiaDevido = new javax.swing.JButton();
+        btnInserirSUAPDiasUtilizados = new javax.swing.JButton();
 
-        escolhedorDeData.setTitle("Escolher Data");
-        escolhedorDeData.setBounds(new java.awt.Rectangle(0, 0, 270, 285));
-        escolhedorDeData.setModal(true);
+        dialogEscolhedorDeData.setTitle("Escolher Data");
+        dialogEscolhedorDeData.setBounds(new java.awt.Rectangle(0, 0, 270, 285));
+        dialogEscolhedorDeData.setModal(true);
 
         calendario.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -119,34 +141,151 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         labelDataJDialog.setText("Data: ");
 
-        javax.swing.GroupLayout escolhedorDeDataLayout = new javax.swing.GroupLayout(escolhedorDeData.getContentPane());
-        escolhedorDeData.getContentPane().setLayout(escolhedorDeDataLayout);
-        escolhedorDeDataLayout.setHorizontalGroup(
-            escolhedorDeDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escolhedorDeDataLayout.createSequentialGroup()
+        javax.swing.GroupLayout dialogEscolhedorDeDataLayout = new javax.swing.GroupLayout(dialogEscolhedorDeData.getContentPane());
+        dialogEscolhedorDeData.getContentPane().setLayout(dialogEscolhedorDeDataLayout);
+        dialogEscolhedorDeDataLayout.setHorizontalGroup(
+            dialogEscolhedorDeDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogEscolhedorDeDataLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escolhedorDeDataLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogEscolhedorDeDataLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelDataJDialog)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(okJDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        escolhedorDeDataLayout.setVerticalGroup(
-            escolhedorDeDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(escolhedorDeDataLayout.createSequentialGroup()
+        dialogEscolhedorDeDataLayout.setVerticalGroup(
+            dialogEscolhedorDeDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogEscolhedorDeDataLayout.createSequentialGroup()
                 .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(escolhedorDeDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dialogEscolhedorDeDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okJDialog)
                     .addComponent(labelDataJDialog))
                 .addGap(0, 0, 0))
+        );
+
+        dialogLoginSuap.setTitle("Logar no SUAP");
+        dialogLoginSuap.setBounds(new java.awt.Rectangle(0, 0, 307, 200));
+        dialogLoginSuap.setMinimumSize(new java.awt.Dimension(307, 200));
+        dialogLoginSuap.setModal(true);
+
+        jLabel9.setFont(new java.awt.Font("Orkney", 0, 18)); // NOI18N
+        jLabel9.setText("Faça login no SUAP para continuar.");
+
+        jLabel10.setFont(new java.awt.Font("Orkney", 0, 18)); // NOI18N
+        jLabel10.setText("Matrícula:");
+
+        campoMatricula.setFont(new java.awt.Font("Orkney", 0, 14)); // NOI18N
+
+        jLabel11.setFont(new java.awt.Font("Orkney", 0, 18)); // NOI18N
+        jLabel11.setText("Senha:");
+
+        campoSenha.setFont(new java.awt.Font("Orkney", 0, 14)); // NOI18N
+        campoSenha.setText("jPasswordField1");
+        campoSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                campoSenhaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campoSenhaFocusLost(evt);
+            }
+        });
+
+        btnOKLogin.setText("OK");
+        btnOKLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOKLoginActionPerformed(evt);
+            }
+        });
+
+        btnCancelLogin.setText("Cancelar");
+        btnCancelLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelLoginActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dialogLoginSuapLayout = new javax.swing.GroupLayout(dialogLoginSuap.getContentPane());
+        dialogLoginSuap.getContentPane().setLayout(dialogLoginSuapLayout);
+        dialogLoginSuapLayout.setHorizontalGroup(
+            dialogLoginSuapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogLoginSuapLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(dialogLoginSuapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogLoginSuapLayout.createSequentialGroup()
+                        .addComponent(btnOKLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancelLogin))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel10)
+                    .addComponent(campoMatricula)
+                    .addComponent(jLabel11)
+                    .addComponent(campoSenha))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        dialogLoginSuapLayout.setVerticalGroup(
+            dialogLoginSuapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogLoginSuapLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(dialogLoginSuapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnOKLogin)
+                    .addComponent(btnCancelLogin))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        dialogCarregandoInserirObservacoes.setBounds(new java.awt.Rectangle(0, 0, 353, 90));
+        dialogCarregandoInserirObservacoes.setMinimumSize(new java.awt.Dimension(353, 90));
+        dialogCarregandoInserirObservacoes.setPreferredSize(new java.awt.Dimension(353, 90));
+        dialogCarregandoInserirObservacoes.pack();
+
+        jLabel12.setFont(new java.awt.Font("Orkney", 0, 18)); // NOI18N
+        jLabel12.setText("Aguarde...");
+
+        barraProgressoObs.setIndeterminate(true);
+
+        javax.swing.GroupLayout dialogCarregandoInserirObservacoesLayout = new javax.swing.GroupLayout(dialogCarregandoInserirObservacoes.getContentPane());
+        dialogCarregandoInserirObservacoes.getContentPane().setLayout(dialogCarregandoInserirObservacoesLayout);
+        dialogCarregandoInserirObservacoesLayout.setHorizontalGroup(
+            dialogCarregandoInserirObservacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogCarregandoInserirObservacoesLayout.createSequentialGroup()
+                .addGap(133, 133, 133)
+                .addComponent(jLabel12)
+                .addContainerGap(138, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogCarregandoInserirObservacoesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(barraProgressoObs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        dialogCarregandoInserirObservacoesLayout.setVerticalGroup(
+            dialogCarregandoInserirObservacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogCarregandoInserirObservacoesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(barraProgressoObs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Suapcron");
         setResizable(false);
         setSize(new java.awt.Dimension(720, 530));
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -246,7 +385,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .addGroup(primeiroPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(campoExpedienteCustomizado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addGroup(primeiroPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -518,6 +657,15 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnInserirSUAPdiaDevido.setText("Inserir no SUAP");
+        btnInserirSUAPdiaDevido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInserirSUAPdiaDevidoActionPerformed(evt);
+            }
+        });
+
+        btnInserirSUAPDiasUtilizados.setText("Inserir no SUAP");
+
         javax.swing.GroupLayout terceiroPassoLayout = new javax.swing.GroupLayout(terceiroPasso);
         terceiroPasso.setLayout(terceiroPassoLayout);
         terceiroPassoLayout.setHorizontalGroup(
@@ -534,12 +682,15 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                         .addGap(0, 242, Short.MAX_VALUE))
                     .addGroup(terceiroPassoLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(botaoRecomecar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(terceiroPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botaoRecomecar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnInserirSUAPdiaDevido, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnInserirSUAPDiasUtilizados, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(terceiroPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(botaoCopiarTextoDevido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botaoCopiarTextoDevido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                             .addComponent(botaoCampoDevido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botaoFinalizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))))
+                            .addComponent(botaoFinalizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         terceiroPassoLayout.setVerticalGroup(
@@ -550,13 +701,17 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoCopiarTextoDevido)
+                .addGroup(terceiroPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoCopiarTextoDevido)
+                    .addComponent(btnInserirSUAPdiaDevido))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campoTextoDevido, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoCampoDevido)
+                .addGroup(terceiroPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoCampoDevido)
+                    .addComponent(btnInserirSUAPDiasUtilizados))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(terceiroPassoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoFinalizar)
@@ -597,11 +752,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             expedienteTotal = new Expediente(new Date(), new Hora(hora, minuto, segundo));
         } else {
             expedienteTotal = new Expediente(new Date(), new Hora(0, 0, 0));
-            
+
         }
-        
+
         expedienteDevido = new Expediente(new Date(), new Hora(0, 0, 0));
-        
+
         DefaultComboBoxModel dcbm = (DefaultComboBoxModel) listaExpedientePadrao.getModel();
         String escolhido = dcbm.getSelectedItem().toString();
         if (escolhido.contains("8")) {
@@ -622,13 +777,13 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private void mostrarCalendarioDiaDevidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarCalendarioDiaDevidoActionPerformed
         Calendar c = this.calendario.getCalendar();
         c.setTime(new Date());
-        escolhedorDeData.setVisible(true);
+        dialogEscolhedorDeData.setVisible(true);
         ehExpedientePadrao = true;
     }//GEN-LAST:event_mostrarCalendarioDiaDevidoActionPerformed
 
     private void okJDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okJDialogActionPerformed
         labelDataJDialog.setText("Data: ");
-        escolhedorDeData.setVisible(false);
+        dialogEscolhedorDeData.setVisible(false);
     }//GEN-LAST:event_okJDialogActionPerformed
 
     private void calendarioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_calendarioPropertyChange
@@ -645,7 +800,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private void botaoSelecaoDataDiaAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSelecaoDataDiaAdicionarActionPerformed
         Calendar c = this.calendario.getCalendar();
         c.setTime(new Date());
-        escolhedorDeData.setVisible(true);
+        dialogEscolhedorDeData.setVisible(true);
         ehAdicaoDeExpediente = true;
     }//GEN-LAST:event_botaoSelecaoDataDiaAdicionarActionPerformed
 
@@ -724,6 +879,66 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_checkBoxDiaCustomStateChanged
 
+    private void btnInserirSUAPdiaDevidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirSUAPdiaDevidoActionPerformed
+        passos.setEnabled(false);
+        dialogCarregandoInserirObservacoes.setVisible(true);
+        if (suap.getServidor() == null) {
+            
+            dialogLoginSuap.setVisible(true);
+            
+            if (!naoContinuarOperacoesNoSuap) {
+                Servidor s = new Servidor(campoMatricula.getText(), String.valueOf(campoSenha.getPassword()));
+                suap.setServidor(s);
+
+                try {
+                    if (!suap.verificarCredenciais()) {
+                        dialogCarregandoInserirObservacoes.setVisible(false);
+                        JOptionPane.showMessageDialog(rootPane, "Credenciais inválidas.", "Atenção", JOptionPane.DEFAULT_OPTION, icone);
+                        naoContinuarOperacoesNoSuap = true;
+                        suap.setServidor(null);
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+                }
+            }
+            
+        }
+
+        
+        if (suap.getServidor() != null && !naoContinuarOperacoesNoSuap) {
+            naoContinuarOperacoesNoSuap = false;
+
+            threadDeInsercaoDeObservacaoDoDiaDevido thread = new threadDeInsercaoDeObservacaoDoDiaDevido();
+            thread.run();
+        }
+        dialogCarregandoInserirObservacoes.setVisible(false);
+        passos.setEnabled(true);
+    }//GEN-LAST:event_btnInserirSUAPdiaDevidoActionPerformed
+
+    private void campoSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoSenhaFocusGained
+        campoSenha.selectAll();
+    }//GEN-LAST:event_campoSenhaFocusGained
+
+    private void campoSenhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoSenhaFocusLost
+        campoSenha.select(0, 0);
+    }//GEN-LAST:event_campoSenhaFocusLost
+
+    private void btnOKLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKLoginActionPerformed
+        naoContinuarOperacoesNoSuap = false;
+        dialogLoginSuap.setVisible(false);
+    }//GEN-LAST:event_btnOKLoginActionPerformed
+
+    private void btnCancelLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelLoginActionPerformed
+        naoContinuarOperacoesNoSuap = true;
+        dialogLoginSuap.setVisible(false);
+    }//GEN-LAST:event_btnCancelLoginActionPerformed
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        if (dialogCarregandoInserirObservacoes.isVisible()) {
+            dialogCarregandoInserirObservacoes.requestFocus();
+        }
+    }//GEN-LAST:event_formFocusGained
+
     /**
      * @param args the command line arguments
      */
@@ -761,6 +976,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea areaTextoDevido;
+    private javax.swing.JProgressBar barraProgressoObs;
     private javax.swing.JButton botaoAdicionar;
     private javax.swing.JButton botaoCampoDevido;
     private javax.swing.JButton botaoCopiarTextoDevido;
@@ -771,17 +987,28 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton botaoRemover;
     private javax.swing.JButton botaoSelecaoDataDiaAdicionar;
     private javax.swing.JButton botaoVoltar;
+    private javax.swing.JButton btnCancelLogin;
+    private javax.swing.JButton btnInserirSUAPDiasUtilizados;
+    private javax.swing.JButton btnInserirSUAPdiaDevido;
+    private javax.swing.JButton btnOKLogin;
     private com.toedter.calendar.JCalendar calendario;
     private javax.swing.JFormattedTextField campoDiaAdicionar;
     private javax.swing.JFormattedTextField campoDiaDevido;
     private javax.swing.JFormattedTextField campoExpedienteCustomizado;
     private javax.swing.JFormattedTextField campoHoraAdicionar;
+    private javax.swing.JTextField campoMatricula;
+    private javax.swing.JPasswordField campoSenha;
     private javax.swing.JTextField campoTextoDevido;
     private javax.swing.JCheckBox checkBoxDiaCustom;
-    private javax.swing.JDialog escolhedorDeData;
+    private javax.swing.JDialog dialogCarregandoInserirObservacoes;
+    private javax.swing.JDialog dialogEscolhedorDeData;
+    private javax.swing.JDialog dialogLoginSuap;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -789,6 +1016,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -815,7 +1043,15 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private boolean comboBreaker;
     private Thread controlePasso2;
     private ImageIcon icone;
+    private Suap suap;
+    private boolean naoContinuarOperacoesNoSuap;
 
+    //gets e sets
+    public JProgressBar getBarraProgressoObs() {
+        return barraProgressoObs;
+    }
+
+    //fim dos gets e sets
     private void limparCamposPasso1() {
         listaExpedientePadrao.setSelectedIndex(0);
         checkBoxDiaCustom.setSelected(false);
@@ -841,6 +1077,12 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private void limparCamposPasso3() {
         areaTextoDevido.setText("");
         campoTextoDevido.setText("");
+    }
+
+
+    private void limparLoginSuap() {
+        campoMatricula.setText("");
+        campoSenha.setText("***************");
     }
 
     private void habilitarCamposPasso2() {
@@ -964,7 +1206,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         @Override
         public void run() {
             while (!comboBreaker) {
-                if (!escolhedorDeData.isFocused()) {
+                if (!dialogEscolhedorDeData.isFocused()) {
                     if (ehExpedientePadrao) {
 
                         JCalendar j = calendario;
@@ -1022,5 +1264,30 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             }
         }
 
+    }
+
+    private class threadDeInsercaoDeObservacaoDoDiaDevido implements Runnable {
+
+        @Override
+        public void run() {
+            //Quando chegar aqui, a janela com a barra de carregamento já estará sendo exibida
+
+            Expediente e = expedienteDevido;
+
+            e.setObservacao(areaTextoDevido.getText());
+
+            try {
+                System.out.println("inserindo observacao");
+                suap.inserirObservacao(e);
+
+                System.out.println("observacao inserida");
+
+                JOptionPane.showMessageDialog(rootPane, "Observação inserida com sucesso.", "Atenção", JOptionPane.DEFAULT_OPTION, icone);
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(JanelaPrincipal.this, ex.getMessage());
+            }
+
+        }
     }
 }
