@@ -13,8 +13,10 @@ import java.awt.datatransfer.StringSelection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -1327,9 +1329,35 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         try {
             if (e.getObservacao().length() > 190) {
                 //inserir multiplas observacoes, cada uma com uma parte do texto
-                String[] observacoes = e.getObservacao().split("\n");
-                
-                
+                LinkedList<String> linhasDaObservacao = new LinkedList(Arrays.asList(e.getObservacao().split("\n")));
+                LinkedList<Expediente> lista = new LinkedList<Expediente>();
+
+                int tamanhoTotal = 0;
+                String observacaoAtual = "";
+
+                while (!linhasDaObservacao.isEmpty()) {
+                    for (String linhaAtual : linhasDaObservacao) {
+                        if (observacaoAtual.length() + linhaAtual.length() <= 190) {
+                            observacaoAtual += linhaAtual;
+                            linhasDaObservacao.remove(linhaAtual);
+                        } else {
+                            break;
+                        }
+                    }
+
+                    Expediente eAux = new Expediente();
+                    eAux.setDia(e.getDia());
+                    eAux.setHorasTrabalhadas(e.getHorasTrabalhadas());
+                    eAux.setObservacao(observacaoAtual);
+                    lista.add(eAux);
+                    observacaoAtual = "";
+                }
+
+                for (Expediente eAux : lista) {
+                    System.out.println("inserindo observacao");
+                    suap.inserirObservacao(e);
+                    System.out.println("observacao inserida");
+                }
             } else {
                 //inserir apenas uma observacao
                 System.out.println("inserindo observacao");
