@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package suapcron.gui;
+package main.java.suapcron.gui;
 
 import com.toedter.calendar.JCalendar;
 import java.awt.Color;
@@ -23,10 +23,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
-import suapcron.domain.Expediente;
-import suapcron.domain.Hora;
-import suapcron.domain.Servidor;
-import suapcron.domain.Suap;
+import main.java.suapcron.domain.Expediente;
+import main.java.suapcron.domain.Hora;
+import main.java.suapcron.domain.Servidor;
+import main.java.suapcron.domain.Suap;
 
 /**
  *
@@ -249,7 +249,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         dialogCarregandoInserirObservacoes.setBounds(new java.awt.Rectangle(0, 0, 353, 90));
         dialogCarregandoInserirObservacoes.setMinimumSize(new java.awt.Dimension(353, 90));
-        dialogCarregandoInserirObservacoes.setPreferredSize(new java.awt.Dimension(353, 90));
         dialogCarregandoInserirObservacoes.pack();
 
         jLabel12.setFont(new java.awt.Font("Orkney", 0, 18)); // NOI18N
