@@ -46,7 +46,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         dialogLoginSuap.setLocationRelativeTo(this);
         dialogCarregandoInserirObservacoes.setLocationRelativeTo(this);
         ehExpedientePadrao = false;
-        icone = new ImageIcon(getClass().getResource("/suapcron/img/icon64.png"));
+        icone = new ImageIcon(getClass().getResource("/main/java/suapcron/img/icon64.png"));
         suap = new Suap();
         naoContinuarOperacoesNoSuap = true;
 
@@ -291,7 +291,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/suapcron/img/path4188.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/suapcron/img/path4188.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -307,7 +307,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         passos.setEnabled(false);
@@ -910,7 +910,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                                 suap.setServidor(null);
                             }
                         } catch (Exception ex) {
-                            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+                            JOptionPane.showMessageDialog(rootPane, "Erro!\n" + ex.getMessage());
                         }
                     }
 
@@ -1335,9 +1335,10 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 String observacaoAtual = "";
 
                 while (!linhasDaObservacao.isEmpty()) {
-                    for (String linhaAtual : linhasDaObservacao) {
-                        if (observacaoAtual.length() + linhaAtual.length() <= 190) {
-                            observacaoAtual += linhaAtual;
+                    for (int x = 0; x < linhasDaObservacao.size(); x++) {
+                        String linhaAtual = (String) linhasDaObservacao.get(x);
+                        if ((observacaoAtual.length() + linhaAtual.length()) <= 190) {
+                            observacaoAtual += linhaAtual + "\n";
                             linhasDaObservacao.remove(linhaAtual);
                         } else {
                             break;
@@ -1354,7 +1355,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
                 for (Expediente eAux : lista) {
                     System.out.println("inserindo observacao");
-                    suap.inserirObservacao(e);
+                    suap.inserirObservacao(eAux);
                     System.out.println("observacao inserida");
                 }
             } else {
@@ -1369,6 +1370,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(JanelaPrincipal.this, ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
